@@ -6,13 +6,13 @@ The project is based on [expo](https://docs.expo.io/), have a look first at thei
 
 In order to work on the project, you need to have the `expo-cli` installed:
 
-```
+```shell script
 npm install --global expo-cli
 ```
 
 Then, fork this repository, `git clone` it and run locally:
- 
-```
+
+```shell script
 cd sudoku-sover
 yarn install
 expo start
