@@ -1,8 +1,11 @@
+// eslint-disable-next-line no-unused-vars
 import {StatusBar} from "expo-status-bar";
 import React, {useState, useEffect} from "react";
-import {StyleSheet, Text, View, TouchableOpacity, ImageBackground} from "react-native";
+import {StyleSheet, Text, View, TouchableOpacity, ImageBackground, Image} from "react-native";
 import {Camera} from "expo-camera";
 
+
+// eslint-disable-next-line no-unused-vars
 const tag = "[CAMERA]";
 
 export default function App() {
@@ -20,10 +23,12 @@ export default function App() {
     })();
   }, []);
 
+  // eslint-disable-next-line no-underscore-dangle
   const __closeCamera = () => {
     setStartOver(true);
   };
 
+  // eslint-disable-next-line no-underscore-dangle
   const __takePicture = async () => {
     if (!camera) return;
     const photo = await camera.takePictureAsync();
@@ -32,6 +37,7 @@ export default function App() {
     setCapturedImage(photo);
   };
 
+  // eslint-disable-next-line no-underscore-dangle
   const __savePhoto = async () => {};
 
   return (
@@ -40,15 +46,17 @@ export default function App() {
         flex: 1
       }}
     >
+
       {startOver ? (
         <View
           style={{
             flex: 1,
-            backgroundColor: "#fff",
+            backgroundColor: "#ffffff",
             justifyContent: "center",
             alignItems: "center"
           }}
         >
+
           <TouchableOpacity
             onPress={() => setStartOver(false)}
             style={{
@@ -61,16 +69,11 @@ export default function App() {
               height: 40
             }}
           >
-            <Text
-              style={{
-                color: "#fff",
-                fontWeight: "bold",
-                textAlign: "center"
-              }}
-            >
-              Take picture
-            </Text>
+
+            <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Take picture </Text>
+
           </TouchableOpacity>
+
         </View>
       ) : (
         <View
@@ -78,6 +81,7 @@ export default function App() {
             flex: 1
           }}
         >
+
           {previewVisible ? (
             <ImageBackground
               source={{uri: capturedImage && capturedImage.uri}}
@@ -85,6 +89,7 @@ export default function App() {
                 flex: 1
               }}
             >
+
               <View
                 style={{
                   flex: 1,
@@ -93,53 +98,48 @@ export default function App() {
                   justifyContent: "flex-end"
                 }}
               >
+
                 <View
                   style={{
                     flexDirection: "row",
                     justifyContent: "space-between"
                   }}
                 >
+
                   <TouchableOpacity
                     onPress={() => setPreviewVisible(false)}
                     style={{
                       width: 130,
                       height: 40,
-
                       alignItems: "center",
                       borderRadius: 4
                     }}
                   >
-                    <Text
-                      style={{
-                        color: "#fff",
-                        fontSize: 20
-                      }}
-                    >
-                      Re-take
-                    </Text>
+
+                    <Text style={{color: "#fff", fontSize: 20}}> Re-take </Text>
+
                   </TouchableOpacity>
+
                   <TouchableOpacity
                     onPress={__savePhoto}
                     style={{
                       width: 130,
                       height: 40,
-
                       alignItems: "center",
                       borderRadius: 4
                     }}
                   >
-                    <Text
-                      style={{
-                        color: "#fff",
-                        fontSize: 20
-                      }}
-                    >
-                      save photo
-                    </Text>
+
+                    <Text style={{color: "#fff", fontSize: 20}}> save photo </Text>
+
                   </TouchableOpacity>
+
                 </View>
+
               </View>
+
             </ImageBackground>
+
           ) : (
             <Camera
               style={{flex: 1}}
@@ -148,42 +148,54 @@ export default function App() {
                 camera = r;
               }}
             >
+
               <View
                 style={{
                   flex: 1,
                   backgroundColor: "transparent",
-                  flexDirection: "row"
+                  flexDirection: "row",
                 }}
               >
-                <View
-                  style={{
-                    position: "absolute",
-                    top: "5%",
-                    right: "5%"
-                  }}
+
+                <TouchableOpacity
+                    onPress={__closeCamera}
+                    style={{
+                      position: "absolute",
+                      top: "5%",
+                      right: "5%"
+                    }}
                 >
-                  <TouchableOpacity onPress={__closeCamera}>
-                    <Text
-                      style={{
-                        color: "#fff",
-                        fontSize: 40
-                      }}
-                    >
-                      X
-                    </Text>
-                  </TouchableOpacity>
-                </View>
+
+                    <Text style={{color: "#fff", fontSize: 50, fontWeight:"bold"}}> × </Text>
+
+                </TouchableOpacity>
+
                 <TouchableOpacity
                   style={{
                     position: "absolute",
-                    top: "5%",
-                    left: "5%"
+                    top: "6%",
+                    left: "7%",
+                    width: 50,
+                    height: 50,
+                    borderRadius: 4,
+                    borderColor: "#aaa",
+                    borderWidth: 4,
+                    backgroundColor: "#fff",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center"
                   }}
                   onPress={() => {
-                    setType(type === Camera.Constants.Type.back ? Camera.Constants.Type.front : Camera.Constants.Type.back);
+                    setType(
+                        type === Camera.Constants.Type.back ?
+                            Camera.Constants.Type.front :
+                            Camera.Constants.Type.back
+                    );
                   }}
                 >
-                  <Text style={{fontSize: 18, marginBottom: 10, color: "white"}}> Flip </Text>
+
+                  <Text style={{fontSize: 20, fontWeight: "bold", color: "#000"}}> Flip </Text>
+
                 </TouchableOpacity>
                 <View
                   style={{
@@ -210,7 +222,9 @@ export default function App() {
                         height: 70,
                         bottom: 0,
                         borderRadius: 50,
-                        backgroundColor: "#fff"
+                        backgroundColor: "#fff",
+                        borderWidth: 4,
+                        borderColor: "#aaa"
                       }}
                     />
                   </View>
