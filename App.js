@@ -3,6 +3,7 @@ import {StatusBar} from "expo-status-bar";
 import React, {useState, useEffect} from "react";
 import {StyleSheet, Text, View, TouchableOpacity, ImageBackground, Image} from "react-native";
 import {Camera} from "expo-camera";
+import imageBackground from "./Components/imageBackground_component";
 
 
 // eslint-disable-next-line no-unused-vars
@@ -51,11 +52,13 @@ export default function App() {
         <View
           style={{
             flex: 1,
-            backgroundColor: "#ffffff",
+            backgroundColor: "#fff",
             justifyContent: "center",
             alignItems: "center"
           }}
         >
+
+
 
           <TouchableOpacity
             onPress={() => setStartOver(false)}
@@ -77,70 +80,64 @@ export default function App() {
         </View>
       ) : (
         <View
-          style={{
-            flex: 1
-          }}
+        style={{
+          flex: 1
+        }}
         >
 
-          {previewVisible ? (
-            <ImageBackground
-              source={{uri: capturedImage && capturedImage.uri}}
-              style={{
-                flex: 1
-              }}
-            >
-
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: "column",
-                  padding: 15,
-                  justifyContent: "flex-end"
-                }}
-              >
-
+          {previewVisible ?
+            imageBackground(
+              capturedImage,
+              () => (
                 <View
                   style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between"
+                    flex: 1,
+                    flexDirection: "column",
+                    padding: 15,
+                    justifyContent: "flex-end"
                   }}
                 >
 
-                  <TouchableOpacity
-                    onPress={() => setPreviewVisible(false)}
+                  <View
                     style={{
-                      width: 130,
-                      height: 40,
-                      alignItems: "center",
-                      borderRadius: 4
+                      flexDirection: "row",
+                      justifyContent: "space-between"
                     }}
                   >
 
-                    <Text style={{color: "#fff", fontSize: 20}}> Re-take </Text>
+                    <TouchableOpacity
+                      onPress={() => setPreviewVisible(false)}
+                      style={{
+                        width: 130,
+                        height: 40,
+                        alignItems: "center",
+                        borderRadius: 4
+                      }}
+                    >
 
-                  </TouchableOpacity>
+                      <Text style={{color: "#fff", fontSize: 20}}> Re-take </Text>
 
-                  <TouchableOpacity
-                    onPress={__savePhoto}
-                    style={{
-                      width: 130,
-                      height: 40,
-                      alignItems: "center",
-                      borderRadius: 4
-                    }}
-                  >
+                    </TouchableOpacity>
 
-                    <Text style={{color: "#fff", fontSize: 20}}> save photo </Text>
+                      <TouchableOpacity
+                        onPress={__savePhoto}
+                        style={{
+                          width: 130,
+                          height: 40,
+                          alignItems: "center",
+                          borderRadius: 4
+                        }}
+                      >
 
-                  </TouchableOpacity>
+                        <Text style={{color: "#fff", fontSize: 20}}> save photo </Text>
+
+                      </TouchableOpacity>
+
+                  </View>
 
                 </View>
-
-              </View>
-
-            </ImageBackground>
-
-          ) : (
+              )
+            ) : (
             <Camera
               style={{flex: 1}}
               type={type}
@@ -178,8 +175,6 @@ export default function App() {
                     width: 50,
                     height: 50,
                     borderRadius: 4,
-                    borderColor: "#aaa",
-                    borderWidth: 4,
                     backgroundColor: "#fff",
                     flexDirection: "row",
                     justifyContent: "center",
@@ -194,7 +189,16 @@ export default function App() {
                   }}
                 >
 
-                  <Text style={{fontSize: 20, fontWeight: "bold", color: "#000"}}> Flip </Text>
+                  <Image
+                    source = {require("./images/renew_ter.png")}
+                    style={{
+                      width: 50,
+                      height: 50,
+                      margin: 20
+                    }}
+                  >
+
+                  </Image>
 
                 </TouchableOpacity>
                 <View
@@ -238,6 +242,7 @@ export default function App() {
   );
 }
 
+// eslint-disable-next-line no-unused-vars
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -246,3 +251,6 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
+
+
+
