@@ -1,0 +1,26 @@
+
+rapport master reconnaissance grille sudoku : https://diuf.unifr.ch/main/diva/sites/diuf.unifr.ch.main.diva/files/joomla_Sudoku.pdf
+
+Résumé :
+Donne des méthodes pour reconnaitre une grille de sudoku. Commence par expliquer comment traiter les images reçu pour ensuite les analyser.
+
+
+
+Repo github avec modèle entrainé pour reconnaitre sudoku (grille + chiffres ) : https://github.com/francois-rozet/sudoku
+
+Résumé :
+Utilise une base de données fait par lui même pour entrainer une ia à reconnaitre en même temps la grille et les chiffres (se moque de reconnaitre en premier la grille). Utilise opencv et pytorch.
+
+
+
+Article reconnaissance grille sudoku : https://aishack.in/tutorials/sudoku-grabber-opencv-detection/
+
+Résumé : 
+utilise opencv et c++. Fait différentes manipulations pour réussir.
+OpenCV : 
+bibliothèque graphique spécialisée en traitement d'image. Disponible en pyhton, c++, java.
+
+
+Repo résolution grille de sudoku comme un humain -> permet d'apprendre : https://github.com/Kermalis/SudokuSolver
+
+
