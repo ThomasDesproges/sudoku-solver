@@ -190,7 +190,7 @@ export default function App() {
                 >
 
                   <Image
-                    source = {require("./images/renew_ter.png")}
+                    source = {require("./images/renew.png")}
                     style={{
                       width: 50,
                       height: 50,
