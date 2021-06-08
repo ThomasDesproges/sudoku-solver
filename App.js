@@ -3,7 +3,8 @@ import {StatusBar} from "expo-status-bar";
 import React, {useState, useEffect} from "react";
 import {StyleSheet, Text, View, TouchableOpacity, ImageBackground, Image} from "react-native";
 import {Camera} from "expo-camera";
-import imageBackground from "./Components/imageBackground_component";
+import imageBackground from "./Components/imageBackground";
+import mainMenu from "./Components/mainMenu";
 
 
 // eslint-disable-next-line no-unused-vars
@@ -24,12 +25,10 @@ export default function App() {
     })();
   }, []);
 
-  // eslint-disable-next-line no-underscore-dangle
   const __closeCamera = () => {
     setStartOver(true);
   };
 
-  // eslint-disable-next-line no-underscore-dangle
   const __takePicture = async () => {
     if (!camera) return;
     const photo = await camera.takePictureAsync();
@@ -38,47 +37,15 @@ export default function App() {
     setCapturedImage(photo);
   };
 
-  // eslint-disable-next-line no-underscore-dangle
   const __savePhoto = async () => {};
 
   return (
-    <View
-      style={{
-        flex: 1
-      }}
-    >
 
-      {startOver ? (
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: "#fff",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-        >
+    <View style={{flex: 1}}>
 
-
-
-          <TouchableOpacity
-            onPress={() => setStartOver(false)}
-            style={{
-              width: 130,
-              borderRadius: 4,
-              backgroundColor: "#14274e",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              height: 40
-            }}
-          >
-
-            <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Take picture </Text>
-
-          </TouchableOpacity>
-
-        </View>
-      ) : (
+      {startOver ?
+          mainMenu(setStartOver)
+          : (
         <View
         style={{
           flex: 1

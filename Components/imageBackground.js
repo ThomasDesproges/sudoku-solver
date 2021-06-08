@@ -9,10 +9,8 @@ function imageBackground(img, foreground) {
                 flex: 1
             }}
         >
-
             {foreground()}
-
-    </ImageBackground>
+        </ImageBackground>
     );
 }
 
