@@ -5,6 +5,9 @@ import {StyleSheet, Text, View, TouchableOpacity, ImageBackground, Image} from "
 import {Camera} from "expo-camera";
 import imageBackground from "./Components/imageBackground";
 import mainMenu from "./Components/mainMenu";
+import previewDisplay from "./Components/previewDisplay";
+import cameraDisplay from "./Components/cameraDisplay";
+import gridDisplay from "./Components/gridDisplay";
 
 
 // eslint-disable-next-line no-unused-vars
@@ -12,9 +15,14 @@ const tag = "[CAMERA]";
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
+
   const [previewVisible, setPreviewVisible] = useState(false);
   const [capturedImage, setCapturedImage] = useState(null);
+
+  const [gridVisible, setGridVisible] = useState(false);
+
   const [startOver, setStartOver] = useState(true);
+
   const [type, setType] = useState(Camera.Constants.Type.back);
 
   let camera: Camera;
@@ -29,6 +37,7 @@ export default function App() {
     setStartOver(true);
   };
 
+  // eslint-disable-next-line no-underscore-dangle
   const __takePicture = async () => {
     if (!camera) return;
     const photo = await camera.takePictureAsync();
@@ -44,167 +53,32 @@ export default function App() {
     <View style={{flex: 1}}>
 
       {startOver ?
-          mainMenu(setStartOver)
-          : (
-        <View
-        style={{
-          flex: 1
-        }}
-        >
+        mainMenu(setStartOver, setGridVisible)
 
-          {previewVisible ?
-            imageBackground(
-              capturedImage,
-              () => (
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: "column",
-                    padding: 15,
-                    justifyContent: "flex-end"
-                  }}
-                >
+        : (
+          <View style={{flex: 1}}>
 
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-between"
-                    }}
-                  >
-
-                    <TouchableOpacity
-                      onPress={() => setPreviewVisible(false)}
-                      style={{
-                        width: 130,
-                        height: 40,
-                        alignItems: "center",
-                        borderRadius: 4
-                      }}
-                    >
-
-                      <Text style={{color: "#fff", fontSize: 20}}> Re-take </Text>
-
-                    </TouchableOpacity>
-
-                      <TouchableOpacity
-                        onPress={__savePhoto}
-                        style={{
-                          width: 130,
-                          height: 40,
-                          alignItems: "center",
-                          borderRadius: 4
-                        }}
-                      >
-
-                        <Text style={{color: "#fff", fontSize: 20}}> save photo </Text>
-
-                      </TouchableOpacity>
-
-                  </View>
-
-                </View>
+            {/* eslint-disable-next-line no-nested-ternary */}
+            {previewVisible ?
+              imageBackground(
+                capturedImage,
+                () => previewDisplay(setPreviewVisible, __savePhoto)
               )
-            ) : (
-            <Camera
-              style={{flex: 1}}
-              type={type}
-              ref={(r) => {
-                camera = r;
-              }}
-            >
+            /* : gridVisible ? (
+              <gridDisplay />
+            ) */
 
-              <View
-                style={{
-                  flex: 1,
-                  backgroundColor: "transparent",
-                  flexDirection: "row",
-                }}
-              >
+            : cameraDisplay(
+                  type,
+                  camera,
+                  __closeCamera,
+                  setType,
+                  __takePicture
+                )
+            }
 
-                <TouchableOpacity
-                    onPress={__closeCamera}
-                    style={{
-                      position: "absolute",
-                      top: "5%",
-                      right: "5%"
-                    }}
-                >
-
-                    <Text style={{color: "#fff", fontSize: 50, fontWeight:"bold"}}> × </Text>
-
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={{
-                    position: "absolute",
-                    top: "6%",
-                    left: "7%",
-                    width: 50,
-                    height: 50,
-                    borderRadius: 4,
-                    backgroundColor: "#fff",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                  onPress={() => {
-                    setType(
-                        type === Camera.Constants.Type.back ?
-                            Camera.Constants.Type.front :
-                            Camera.Constants.Type.back
-                    );
-                  }}
-                >
-
-                  <Image
-                    source = {require("./images/renew.png")}
-                    style={{
-                      width: 50,
-                      height: 50,
-                      margin: 20
-                    }}
-                  >
-
-                  </Image>
-
-                </TouchableOpacity>
-                <View
-                  style={{
-                    position: "absolute",
-                    bottom: 0,
-                    flexDirection: "row",
-                    flex: 1,
-                    width: "100%",
-                    padding: 20,
-                    justifyContent: "space-between"
-                  }}
-                >
-                  <View
-                    style={{
-                      alignSelf: "center",
-                      flex: 1,
-                      alignItems: "center"
-                    }}
-                  >
-                    <TouchableOpacity
-                      onPress={__takePicture}
-                      style={{
-                        width: 70,
-                        height: 70,
-                        bottom: 0,
-                        borderRadius: 50,
-                        backgroundColor: "#fff",
-                        borderWidth: 4,
-                        borderColor: "#aaa"
-                      }}
-                    />
-                  </View>
-                </View>
-              </View>
-            </Camera>
+          </View>
           )}
-        </View>
-      )}
     </View>
   );
 }

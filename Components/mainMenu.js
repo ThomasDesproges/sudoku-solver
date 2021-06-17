@@ -1,7 +1,7 @@
 import React from "react";
 import {Text, TouchableOpacity, View} from "react-native";
 
-function mainMenu(setStartOver) {
+function mainMenu(setStartOver, setGridVisible) {
     return (
         <View
             style={{
@@ -34,7 +34,7 @@ function mainMenu(setStartOver) {
             </TouchableOpacity>
 
             <TouchableOpacity
-                onPress={() => setStartOver(false)}
+                onPress={() => setGridVisible(true)}
                 style={{
                     width: 130,
                     borderRadius: 4,
