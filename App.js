@@ -7,7 +7,7 @@ import imageBackground from "./Components/imageBackground";
 import mainMenu from "./Components/mainMenu";
 import previewDisplay from "./Components/previewDisplay";
 import cameraDisplay from "./Components/cameraDisplay";
-import gridDisplay from "./Components/gridDisplay";
+import gridDisplay from "./Components/gridDisplayBis";
 
 
 // eslint-disable-next-line no-unused-vars
@@ -58,17 +58,15 @@ export default function App() {
         : (
           <View style={{flex: 1}}>
 
-            {/* eslint-disable-next-line no-nested-ternary */}
             {previewVisible ?
               imageBackground(
                 capturedImage,
                 () => previewDisplay(setPreviewVisible, __savePhoto)
               )
-            /* : gridVisible ? (
-              <gridDisplay />
-            ) */
-
-            : cameraDisplay(
+            /* : gridVisible ?
+              gridDisplay()
+            */
+            :  cameraDisplay(
                   type,
                   camera,
                   __closeCamera,
