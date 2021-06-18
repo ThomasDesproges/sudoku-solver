@@ -34,7 +34,7 @@ function mainMenu(setStartOver, setGridVisible) {
             </TouchableOpacity>
 
             <TouchableOpacity
-                /* onPress={() => setGridVisible(true)} */
+                onPress={() => {setStartOver(false); setGridVisible(true);}}
                 style={{
                     width: 130,
                     borderRadius: 4,

@@ -7,7 +7,7 @@ import imageBackground from "./Components/imageBackground";
 import mainMenu from "./Components/mainMenu";
 import previewDisplay from "./Components/previewDisplay";
 import cameraDisplay from "./Components/cameraDisplay";
-import gridDisplay from "./Components/gridDisplayBis";
+import gridDisplay from "./Components/gridDisplay";
 
 
 // eslint-disable-next-line no-unused-vars
@@ -20,6 +20,8 @@ export default function App() {
   const [capturedImage, setCapturedImage] = useState(null);
 
   const [gridVisible, setGridVisible] = useState(false);
+  const [sudokuList, setSudokuList] = useState([5," ",7,8," ",1,6," ",9,8," ",4,6," "," "," ",1,2," ",6,1," ",9,4," "," ",8," "," "," ",7," ",6," ",9," "," ",3," ",1," ",8," "," ",7," ",7," ",3,2," "," ",6," ",9," ",6,4," ",3," ",2," "," "," ",8,5," ",7," "," ",1,7," ",3," "," ",2,4," "," "]);
+
 
   const [startOver, setStartOver] = useState(true);
 
@@ -37,7 +39,6 @@ export default function App() {
     setStartOver(true);
   };
 
-  // eslint-disable-next-line no-underscore-dangle
   const __takePicture = async () => {
     if (!camera) return;
     const photo = await camera.takePictureAsync();
@@ -63,16 +64,15 @@ export default function App() {
                 capturedImage,
                 () => previewDisplay(setPreviewVisible, __savePhoto)
               )
-            /* : gridVisible ?
-              gridDisplay()
-            */
-            :  cameraDisplay(
-                  type,
-                  camera,
-                  __closeCamera,
-                  setType,
-                  __takePicture
-                )
+            : gridVisible ?
+              gridDisplay(sudokuList, setStartOver, setGridVisible)
+            : cameraDisplay(
+                type,
+                camera,
+                __closeCamera,
+                setType,
+                __takePicture
+              )
             }
 
           </View>

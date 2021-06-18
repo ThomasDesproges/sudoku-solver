@@ -1,103 +1,166 @@
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import React, {Component} from "react";
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import React from "react";
 
-export default class gridDisplay extends Component{
+function gridDisplay(sudokuList, setStartOver, setGridVisible) {
 
-  state = {
-    uri : "https://i.imgur.com/VY0j4Ka.jpeg",
-    text : "Cliquez ici pour résoudre le sudoku !",
-    textIndice : "Cliquez ici pour avoir un indice !",
-    sudokuList : [5," ",7,8," ",1,6,' ',9,8,' ',4,6,' ',' ',' ',1,2,' ',6,1,' ',9,4,' ',' ',8,' ',' ',' ',7,' ',6,' ',9,' ',' ',3,' ',1,' ',8,' ',' ',7,' ',7,' ',3,2,' ',' ',6,' ',9,' ',6,4,' ',3,' ',2,' ',' ',' ',8,5,' ',7,' ',' ',1,7,' ',3,' ',' ',2,4,' ',' '],
-  };
+  const sudokuData = [
+    {id: "1", value: sudokuList[1]},
+    {id: "2", value: sudokuList[2]},
+    {id: "3", value: sudokuList[3]},
+    {id: "4", value: sudokuList[4]},
+    {id: "5", value: sudokuList[5]},
+    {id: "6", value: sudokuList[6]},
+    {id: "7", value: sudokuList[7]},
+    {id: "8", value: sudokuList[8]},
+    {id: "9", value: sudokuList[9]},
+    {id: "10", value: sudokuList[10]},
+    {id: "11", value: sudokuList[11]},
+    {id: "12", value: sudokuList[12]},
+    {id: "13", value: sudokuList[13]},
+    {id: "14", value: sudokuList[14]},
+    {id: "15", value: sudokuList[15]},
+    {id: "16", value: sudokuList[16]},
+    {id: "17", value: sudokuList[17]},
+    {id: "18", value: sudokuList[18]},
+    {id: "19", value: sudokuList[19]},
+    {id: "20", value: sudokuList[20]},
+    {id: "21", value: sudokuList[21]},
+    {id: "22", value: sudokuList[22]},
+    {id: "23", value: sudokuList[23]},
+    {id: "24", value: sudokuList[24]},
+    {id: "25", value: sudokuList[25]},
+    {id: "26", value: sudokuList[26]},
+    {id: "27", value: sudokuList[27]},
+    {id: "28", value: sudokuList[28]},
+    {id: "29", value: sudokuList[29]},
+    {id: "30", value: sudokuList[30]},
+    {id: "31", value: sudokuList[31]},
+    {id: "32", value: sudokuList[32]},
+    {id: "33", value: sudokuList[33]},
+    {id: "34", value: sudokuList[34]},
+    {id: "35", value: sudokuList[35]},
+    {id: "36", value: sudokuList[36]},
+    {id: "37", value: sudokuList[37]},
+    {id: "38", value: sudokuList[38]},
+    {id: "39", value: sudokuList[39]},
+    {id: "40", value: sudokuList[40]},
+    {id: "41", value: sudokuList[41]},
+    {id: "42", value: sudokuList[42]},
+    {id: "43", value: sudokuList[43]},
+    {id: "44", value: sudokuList[44]},
+    {id: "45", value: sudokuList[45]},
+    {id: "46", value: sudokuList[46]},
+    {id: "47", value: sudokuList[47]},
+    {id: "48", value: sudokuList[48]},
+    {id: "49", value: sudokuList[49]},
+    {id: "50", value: sudokuList[50]},
+    {id: "51", value: sudokuList[51]},
+    {id: "52", value: sudokuList[52]},
+    {id: "53", value: sudokuList[53]},
+    {id: "54", value: sudokuList[54]},
+    {id: "55", value: sudokuList[55]},
+    {id: "56", value: sudokuList[56]},
+    {id: "57", value: sudokuList[57]},
+    {id: "58", value: sudokuList[58]},
+    {id: "59", value: sudokuList[59]},
+    {id: "60", value: sudokuList[60]},
+    {id: "61", value: sudokuList[61]},
+    {id: "62", value: sudokuList[62]},
+    {id: "63", value: sudokuList[63]},
+    {id: "64", value: sudokuList[64]},
+    {id: "65", value: sudokuList[65]},
+    {id: "66", value: sudokuList[66]},
+    {id: "67", value: sudokuList[67]},
+    {id: "68", value: sudokuList[68]},
+    {id: "69", value: sudokuList[69]},
+    {id: "70", value: sudokuList[70]},
+    {id: "71", value: sudokuList[71]},
+    {id: "72", value: sudokuList[72]},
+    {id: "73", value: sudokuList[73]},
+    {id: "74", value: sudokuList[74]},
+    {id: "75", value: sudokuList[75]},
+    {id: "76", value: sudokuList[76]},
+    {id: "77", value: sudokuList[77]},
+    {id: "78", value: sudokuList[78]},
+    {id: "79", value: sudokuList[79]},
+    {id: "80", value: sudokuList[80]},
+    {id: "81", value: sudokuList[81]}
+  ];
 
-  revelationIndice = () => {
-    this.setState({
-      sudokuList : [5,2,7,8,' ',1,6,' ',9,8,' ',4,6,' ',' ',' ',1,2,' ',6,1,' ',9,4,' ',' ',8,' ',' ',' ',7,' ',6,' ',9,' ',' ',3,' ',1,' ',8,' ',' ',7,' ',7,' ',3,2,' ',' ',6,' ',9,' ',6,4,' ',3,' ',2,' ',' ',' ',8,5,' ',7,' ',' ',1,7,' ',3,' ',' ',2,4,' ',' ']
-    })
-  }
-
-  changementImage = () => {
-    this.setState({
-      uri : "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Diagonal-Sudoku-by-Skratt.svg/440px-Diagonal-Sudoku-by-Skratt.svg.png",
-      text : "sudoku résolu !",
-      sudokuList : [5,2,7,8,3,1,6,4,9,8,9,4,6,7,5,3,1,2,3,6,1,2,9,4,5,7,8,4,8,2,7,5,6,1,9,3,6,3,9,1,4,8,2,5,7,1,7,5,3,2,9,8,6,4,9,1,6,4,8,3,7,2,5,2,4,8,5,6,7,9,3,1,7,5,3,9,1,2,4,8,6]
-    });
-  };
-
-  render(){
-    return (
-      <View style={styles.container}>
-        <Text style={{margin:20}}> Premier type d'affichage : on utilise des images </Text>
-        <img src = {this.state.uri} style = {StyleSheet.logo}/>
-        <Text style={{margin:20}}> Deuxième type d'affichage : on utilise un vecteur contenant le sudoku </Text>
-        <table style = {{borderCollapse: 'collapse', fontFamily: 'Calibri, sans-serif'}}>
-          <colgroup style = {{border: 'solid medium'}}><col /><col /><col />
-          </colgroup><colgroup style = {{border: 'solid medium'}}><col /><col /><col />
-          </colgroup><colgroup style = {{border: 'solid medium'}}><col /><col /><col />
-          </colgroup><tbody style = {{border: 'solid medium'}}>
-            <tr> <td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[0]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[1]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[2]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[3]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[4]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[5]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[6]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[7]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[8]}
-              </td></tr><tr> <td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[9]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[10]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[11]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[12]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[13]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[14]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[15]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[16]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[17]}
-              </td></tr><tr> <td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[18]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[19]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[20]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[21]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[22]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[23]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[24]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[25]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[26]}
-              </td></tr></tbody><tbody style = {{border: 'solid medium'}}>
-            <tr> <td style = {{border: "solid thin", height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[27]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[28]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[29]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[30]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[31]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[32]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[33]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[34]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[35]}
-              </td></tr><tr> <td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[36]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[37]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[38]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[39]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[40]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[41]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[42]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[43]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[44]}
-              </td></tr><tr> <td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[45]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[46]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[47]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[48]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[49]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[50]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[51]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[52]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[53]}
-              </td></tr></tbody><tbody style = {{border: 'solid medium'}}>
-            <tr> <td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[54]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[55]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[56]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[57]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[58]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[59]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[60]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[61]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[62]}
-              </td></tr><tr> <td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[63]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[64]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[65]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[66]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[67]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[68]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[69]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[70]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[71]}
-              </td></tr><tr> <td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[72]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[73]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[74]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[75]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[76]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[77]} </td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[78]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[79]}</td><td style = {{border: 'solid thin', height: '1.4em', width: '1.4em', textAlign: 'center', padding: 0}}>{this.state.sudokuList[80]}
-              </td></tr></tbody></table>
-        <TouchableOpacity style={styles.button} onPress={this.changementImage}>
-          <Text style={{margin:20}}> {this.state.text} </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={this.revelationIndice}>
-          <Text style={{margin:20}}> {this.state.textIndice} </Text>
-        </TouchableOpacity>
+  const Item = ({value}) => (
+      <View style={styles.sudokuBlock}>
+        <Text style={{fontSize: 24}}>{value}</Text>
       </View>
-    );
-  }
+  );
+
+  const renderItem = ({item}) => (
+      <Item value={item.value}/>
+  );
+
+  return (
+    <View style={styles.container}>
+
+      <View styles={{flex: 1}}>
+        <Text style={styles.text}> Current Sudoku </Text>
+      </View>
+
+      <View style={styles.sudokuGrid}>
+        <FlatList
+          data={sudokuData}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          numColumns={9}
+        />
+      </View>
+
+      <TouchableOpacity
+        onPress={() => {setStartOver(true); setGridVisible(false);}}
+        style={styles.button}
+      >
+        <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Menu </Text>
+      </TouchableOpacity>
+
+    </View>
+
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  logo: {
-    width: 200,
-    height: 200,
-    marginBottom: 20,
+  sudokuBlock: {
+    alignItems: "center",
+    height: 35,
+    width: 35,
+    borderWidth: 1,
+    borderColor: "#000"
   },
-  instructions: {
-    color: '#888',
-    fontSize: 18,
-    marginHorizontal: 15,
-    marginBottom: 10,
+  sudokuGrid: {
+    height: 321,
+    borderWidth: 3,
+    borderColor: "#14274e",
+    borderRadius: 3,
+    margin: 10
   },
   button: {
-    alignItems : 'center',
-    color: '#888',
-    fontSize: 18,
-    marginHorizontal: 15,
-    marginBottom: 10,
-    backgroundColor : '#FF4500',
+    width: 130,
+    borderRadius: 4,
+    backgroundColor: "#14274e",
+    justifyContent: "center",
+    margin: 10,
+    height: 40,
   },
-  table:{
-    fontFamily: 'Calibri, sans-serif'
-  },
-  colgroup:{
-    borderWidth: 2
-  },
-  tbody:{
-    borderWidth: 2
-    },
-  td:{
-    borderWidth: 1,
-    height: '1.4em',
-    width: '1.4em',
-    textAlign: 'center',
-    padding: 0
-    }
+  text: {
+    color: "#000",
+    fontSize: 30,
+    fontWeight: "bold",
+    textAlign:"center"
+  }
 });
+
+
+export default gridDisplay;
