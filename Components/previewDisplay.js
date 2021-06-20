@@ -1,7 +1,7 @@
 import {Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 
-function previewDisplay(setPreviewVisible, __savePhoto) {
+function previewDisplay(setViewCapturedImage, __savePhoto) {
     return (
         <View
             style={{
@@ -20,7 +20,7 @@ function previewDisplay(setPreviewVisible, __savePhoto) {
             >
 
                 <TouchableOpacity
-                    onPress={() => setPreviewVisible(false)}
+                    onPress={() => setViewCapturedImage(false)}
                     style={{
                         width: 130,
                         height: 40,
