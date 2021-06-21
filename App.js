@@ -7,7 +7,7 @@ import imageBackground from "./Components/imageBackground";
 import mainMenu from "./Components/mainMenu";
 import previewDisplay from "./Components/previewDisplay";
 import cameraDisplay from "./Components/cameraDisplay";
-import gridDisplay from "./Components/gridDisplay";
+import solverDisplay from "./Components/gridDisplay";
 
 
 // eslint-disable-next-line no-unused-vars
@@ -21,7 +21,7 @@ export default function App() {
 
   const [gridVisible, setGridVisible] = useState(false);
   const sudokuList = [5," ",7,8," ",1,6," ",9,8," ",4,6," "," "," ",1,2," ",6,1," ",9,4," "," ",8," "," "," ",7," ",6," ",9," "," ",3," ",1," ",8," "," ",7," ",7," ",3,2," "," ",6," ",9," ",6,4," ",3," ",2," "," "," ",8,5," ",7," "," ",1,7," ",3," "," ",2,4," "," "];
-  const sudokuData = [
+  /* const sudokuData = [
     {id: 0, value: sudokuList[0]},
     {id: 1, value: sudokuList[1]},
     {id: 2, value: sudokuList[2]},
@@ -103,7 +103,7 @@ export default function App() {
     {id: 78, value: sudokuList[78]},
     {id: 79, value: sudokuList[79]},
     {id: 80, value: sudokuList[80]}
-  ];
+  ]; */
   const [selectionId, setSelectionId] = useState(-1);
 
   const [startOver, setStartOver] = useState(true);
@@ -148,9 +148,9 @@ export default function App() {
                 () => previewDisplay(setViewCapturedImage, __savePhoto)
               )
             : gridVisible ?
-              gridDisplay(
+              solverDisplay(
                 sudokuList,
-                sudokuData,
+                /* sudokuData, */
                 setStartOver,
                 setGridVisible,
                 selectionId,
