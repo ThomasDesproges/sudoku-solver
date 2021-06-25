@@ -2,13 +2,12 @@ import {Image, Text, TouchableOpacity, View} from "react-native";
 import {Camera} from "expo-camera";
 import React from "react";
 
-function cameraDisplay(type, camera, __closeCamera, setType, __takePicture) {
-    return (
-        <Camera
+const CameraDisplay = (props) => (
+    <Camera
         style={{flex: 1}}
-        type={type}
+        type={props.type}
         ref={(r) => {
-            camera = r;
+            props.camera = r;
         }}
     >
 
@@ -21,7 +20,7 @@ function cameraDisplay(type, camera, __closeCamera, setType, __takePicture) {
         >
 
             <TouchableOpacity
-                onPress={__closeCamera}
+                onPress={props.__closeCamera}
                 style={{
                     position: "absolute",
                     top: "5%",
@@ -47,8 +46,8 @@ function cameraDisplay(type, camera, __closeCamera, setType, __takePicture) {
                     alignItems: "center"
                 }}
                 onPress={() => {
-                    setType(
-                        type === Camera.Constants.Type.back ?
+                    props.setType(
+                        props.type === Camera.Constants.Type.back ?
                             Camera.Constants.Type.front :
                             Camera.Constants.Type.back
                     );
@@ -84,7 +83,7 @@ function cameraDisplay(type, camera, __closeCamera, setType, __takePicture) {
                     }}
                 >
                     <TouchableOpacity
-                        onPress={__takePicture}
+                        onPress={props.__takePicture}
                         style={{
                             width: 70,
                             height: 70,
@@ -99,8 +98,7 @@ function cameraDisplay(type, camera, __closeCamera, setType, __takePicture) {
             </View>
         </View>
     </Camera>
-    );
-}
+);
 
 
-export default cameraDisplay;
+export default CameraDisplay;
