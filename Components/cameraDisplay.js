@@ -24,24 +24,31 @@ const CameraDisplay = (props) => (
                 style={{
                     position: "absolute",
                     top: "5%",
-                    right: "5%"
+                    right: "5%",
+                    width: 50,
+                    height: 50,
+                    borderRadius: 4,
+                    borderWidth: 4,
+                    backgroundColor: "#fff",
+                    justifyContent: "center",
+                    alignItems: "center"
                 }}
             >
 
-                <Text style={{color: "#fff", fontSize: 50, fontWeight:"bold"}}> × </Text>
+                <Text style={{color: "#888", fontSize: 50, fontWeight:"bold"}}> × </Text>
 
             </TouchableOpacity>
 
             <TouchableOpacity
                 style={{
                     position: "absolute",
-                    top: "6%",
-                    left: "7%",
+                    top: "5%",
+                    left: "5%",
                     width: 50,
                     height: 50,
                     borderRadius: 4,
+                    borderWidth: 4,
                     backgroundColor: "#fff",
-                    flexDirection: "row",
                     justifyContent: "center",
                     alignItems: "center"
                 }}

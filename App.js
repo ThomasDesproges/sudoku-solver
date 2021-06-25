@@ -14,6 +14,7 @@ import SolverDisplay from "./Components/gridDisplay";
 const tag = "[CAMERA]";
 
 export default function App() {
+
   const [hasPermission, setHasPermission] = useState(null);
 
   const [viewCapturedImage, setViewCapturedImage] = useState(false);
@@ -29,6 +30,8 @@ export default function App() {
 
   let camera: Camera;
 
+  console.log(camera);
+
   useEffect(() => {
     ;(async () => {
       const {status} = await Camera.requestPermissionsAsync();
@@ -36,12 +39,16 @@ export default function App() {
     })();
   }, []);
 
+  console.log(camera);
+
   const __closeCamera = () => {
     setStartOver(true);
   };
 
   const __takePicture = async () => {
     if (!camera) return;
+    console.log("oui");
+    console.log(camera);
     const photo = await camera.takePictureAsync();
     console.log(photo);
     setViewCapturedImage(true);
@@ -56,9 +63,11 @@ export default function App() {
     setSudokuList(newSudokuList);
   };
 
+  console.log(camera);
+
   return (
 
-    <View style={{flex: 1}}>
+    <View id="appRoot" style={{flex: 1}}>
 
       {startOver ?
 
@@ -98,7 +107,7 @@ export default function App() {
                 camera={camera}
                 __closeCamera={__closeCamera}
                 setType={setType}
-                __takePicture={__takePicture()}
+                __takePicture={__takePicture}
               />
             }
 
