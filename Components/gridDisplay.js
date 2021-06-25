@@ -42,21 +42,41 @@ function solverDisplay(sudokuList, setStartOver, setGridVisible, selectionId, se
 
       {gridDisplay(sudokuList, selectionId, setSelectionId)}
 
-      <View style={styles.keypad}>
-        <FlatList
-          data={keypadData}
-          renderItem={renderKey}
-          keyExtractor={item => item.id}
-          numColumns={3}
-        />
+      <View style={{flexDirection: "row"}}>
+
+        <View style={styles.keypad}>
+          <FlatList
+            data={keypadData}
+            renderItem={renderKey}
+            keyExtractor={item => item.id}
+            numColumns={3}
+          />
+          <TouchableOpacity
+            onPress={
+              () => {
+                console.log("last move");
+                console.log(sudokuList[selectionId]);
+                sudokuList.splice(selectionId, 1, " ");
+                console.log(sudokuList[selectionId]);
+              }
+            }
+            style={styles.key}
+          >
+            <Text style={styles.keyText}>×</Text>
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity
+          onPress={() => {setStartOver(true); setGridVisible(false);}}
+          style={styles.button}
+        >
+          <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Menu </Text>
+        </TouchableOpacity>
+
       </View>
 
-      <TouchableOpacity
-        onPress={() => {setStartOver(true); setGridVisible(false);}}
-        style={styles.button}
-      >
-        <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Menu </Text>
-      </TouchableOpacity>
+
+
 
     </View>
   );
@@ -218,7 +238,7 @@ const styles = StyleSheet.create({
     textAlign:"center"
   },
   keypad: {
-    height:147,
+    height:200,
     borderColor: "#3E823E",
     borderWidth: 2,
     borderRadius: 6,
