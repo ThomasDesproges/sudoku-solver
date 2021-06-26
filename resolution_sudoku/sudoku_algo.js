@@ -10,6 +10,7 @@ const square_coordinates = [
     [7, 7, 7, 8, 8, 8, 9, 9, 9]
 ];
 
+
 function get_row(board, row) {
     return board[row];
 }
@@ -80,6 +81,7 @@ function compare(expected, actual) {
     return array1.length === array2.length && array1.sort().every((value, index) => value === array2.sort()[index]);
 }
 
+// true si board (complété) est valide, false sinon
 function is_solved(board) {
     const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     let valid = true;
@@ -164,6 +166,7 @@ function one_value_cell_constraint(board) {
     return updated;
 }
 
+// renvoie un array contenant le board complété
 function solve(board) {
 
     let updated = true; let solved = false;
