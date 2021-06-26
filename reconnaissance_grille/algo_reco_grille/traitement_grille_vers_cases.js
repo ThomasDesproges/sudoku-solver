@@ -1,5 +1,6 @@
+import cv from "./opencv";
 
-function traitementGrilleVersCases(imgSudokuRaw,borderCleaning,borderFree,midSpace,BandWonly){
+export default function traitementGrilleVersCases(imgSudokuRaw,borderCleaning,borderFree,midSpace,BandWonly){
 
     //Paramètres à entrer : img,0.1,0.25,0.1,true
 
