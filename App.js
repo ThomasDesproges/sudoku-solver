@@ -63,9 +63,9 @@ export default function App() {
 
   const __savePhoto = async () => {};
 
-  const handleSudokuModification = (index, value) => {
+  const handleSudokuModification = (i, j, value) => {
     const newSudokuList = [...sudokuList];
-    newSudokuList[index] = value;
+    newSudokuList[i][j] = value;
     setSudokuList(newSudokuList);
   };
 

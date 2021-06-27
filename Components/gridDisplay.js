@@ -20,7 +20,11 @@ const SolverDisplay = (props) => {
       <TouchableOpacity
         onPress={
           () => {
-            props.handleSudokuModification(props.selectionId, item.id);
+            props.handleSudokuModification(
+              props.selectionLine,
+              props.selectionColumn,
+              item.id
+            );
           }
         }
         style={styles.key}
@@ -41,6 +45,7 @@ const SolverDisplay = (props) => {
         sudokuList={props.sudokuList}
         selectionLine={props.selectionLine}
         setSelectionLine={props.setSelectionLine}
+        selectionColumn={props.selectionColumn}
         setSelectionColumn={props.setSelectionColumn}
       />
 
@@ -56,7 +61,11 @@ const SolverDisplay = (props) => {
           <TouchableOpacity
             onPress={
               () => {
-                props.handleSudokuModification(props.selectionId, " ");
+                props.handleSudokuModification(
+                  props.selectionLine,
+                  props.selectionColumn,
+                  0
+                );
               }
             }
             style={styles.key}
@@ -185,12 +194,16 @@ const GridDisplay = (props) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          console.log("i =", Math.floor(item.id/9), "j =", item.id % 9);
           props.setSelectionLine(Math.floor(item.id/9));
           props.setSelectionColumn(item.id % 9);
-          // console.log(props.selectionLine);
         }}
-        style={(Math.floor(item.id/9) === props.selectionLine && item.id % 9 === props.selectionColumn) ? styles.selectedSudokuBlock : styles.sudokuBlock}
+        style={
+          (Math.floor(item.id/9) === props.selectionLine) ? 
+            ( item.id % 9 === props.selectionColumn ?
+              styles.selectedSudokuBlock : 
+              styles.sudokuBlock ) :
+            styles.sudokuBlock
+        }
       >
         <Text style={{fontSize: 24}}>{(item.value === 0) ? " " : item.value}</Text>
       </TouchableOpacity>

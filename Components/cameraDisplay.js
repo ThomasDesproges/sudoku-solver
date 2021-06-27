@@ -3,6 +3,7 @@ import {Camera} from "expo-camera";
 import React from "react";
 
 const CameraDisplay = (props) => (
+
     <Camera
         style={{flex: 1}}
         type={props.type}
@@ -35,7 +36,7 @@ const CameraDisplay = (props) => (
                 }}
             >
 
-                <Text style={{color: "#888", fontSize: 50, fontWeight:"bold"}}> × </Text>
+                <Text style={{color: "#888", fontSize: 40, fontWeight:"bold"}}> × </Text>
 
             </TouchableOpacity>
 
