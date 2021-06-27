@@ -39,8 +39,9 @@ const SolverDisplay = (props) => {
 
       <GridDisplay
         sudokuList={props.sudokuList}
-        selectionId={props.selectionId}
-        setSelectionId={props.setSelectionId}
+        selectionLine={props.selectionLine}
+        setSelectionLine={props.setSelectionLine}
+        setSelectionColumn={props.setSelectionColumn}
       />
 
       <View style={{flexDirection: "row"}}>
@@ -64,12 +65,29 @@ const SolverDisplay = (props) => {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity
-          onPress={() => {props.setStartOver(true); props.setGridVisible(false);}}
-          style={styles.button}
-        >
-          <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Menu </Text>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity
+            onPress={() => {props.setStartOver(true); props.setGridVisible(false);}}
+            style={styles.button}
+          >
+            <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Menu </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={props.handleSudokuSolving}
+            style={styles.button}
+          >
+            <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Solve </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={props.handleClearSudoku}
+            style={styles.button}
+          >
+            <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Clear </Text>
+          </TouchableOpacity>
+
+        </View>
 
       </View>
 
@@ -80,96 +98,101 @@ const SolverDisplay = (props) => {
 const GridDisplay = (props) => {
 
   const sudokuData = [
-    {id: 0, value: props.sudokuList[0]},
-    {id: 1, value: props.sudokuList[1]},
-    {id: 2, value: props.sudokuList[2]},
-    {id: 3, value: props.sudokuList[3]},
-    {id: 4, value: props.sudokuList[4]},
-    {id: 5, value: props.sudokuList[5]},
-    {id: 6, value: props.sudokuList[6]},
-    {id: 7, value: props.sudokuList[7]},
-    {id: 8, value: props.sudokuList[8]},
-    {id: 9, value: props.sudokuList[9]},
-    {id: 10, value: props.sudokuList[10]},
-    {id: 11, value: props.sudokuList[11]},
-    {id: 12, value: props.sudokuList[12]},
-    {id: 13, value: props.sudokuList[13]},
-    {id: 14, value: props.sudokuList[14]},
-    {id: 15, value: props.sudokuList[15]},
-    {id: 16, value: props.sudokuList[16]},
-    {id: 17, value: props.sudokuList[17]},
-    {id: 18, value: props.sudokuList[18]},
-    {id: 19, value: props.sudokuList[19]},
-    {id: 20, value: props.sudokuList[20]},
-    {id: 21, value: props.sudokuList[21]},
-    {id: 22, value: props.sudokuList[22]},
-    {id: 23, value: props.sudokuList[23]},
-    {id: 24, value: props.sudokuList[24]},
-    {id: 25, value: props.sudokuList[25]},
-    {id: 26, value: props.sudokuList[26]},
-    {id: 27, value: props.sudokuList[27]},
-    {id: 28, value: props.sudokuList[28]},
-    {id: 29, value: props.sudokuList[29]},
-    {id: 30, value: props.sudokuList[30]},
-    {id: 31, value: props.sudokuList[31]},
-    {id: 32, value: props.sudokuList[32]},
-    {id: 33, value: props.sudokuList[33]},
-    {id: 34, value: props.sudokuList[34]},
-    {id: 35, value: props.sudokuList[35]},
-    {id: 36, value: props.sudokuList[36]},
-    {id: 37, value: props.sudokuList[37]},
-    {id: 38, value: props.sudokuList[38]},
-    {id: 39, value: props.sudokuList[39]},
-    {id: 40, value: props.sudokuList[40]},
-    {id: 41, value: props.sudokuList[41]},
-    {id: 42, value: props.sudokuList[42]},
-    {id: 43, value: props.sudokuList[43]},
-    {id: 44, value: props.sudokuList[44]},
-    {id: 45, value: props.sudokuList[45]},
-    {id: 46, value: props.sudokuList[46]},
-    {id: 47, value: props.sudokuList[47]},
-    {id: 48, value: props.sudokuList[48]},
-    {id: 49, value: props.sudokuList[49]},
-    {id: 50, value: props.sudokuList[50]},
-    {id: 51, value: props.sudokuList[51]},
-    {id: 52, value: props.sudokuList[52]},
-    {id: 53, value: props.sudokuList[53]},
-    {id: 54, value: props.sudokuList[54]},
-    {id: 55, value: props.sudokuList[55]},
-    {id: 56, value: props.sudokuList[56]},
-    {id: 57, value: props.sudokuList[57]},
-    {id: 58, value: props.sudokuList[58]},
-    {id: 59, value: props.sudokuList[59]},
-    {id: 60, value: props.sudokuList[60]},
-    {id: 61, value: props.sudokuList[61]},
-    {id: 62, value: props.sudokuList[62]},
-    {id: 63, value: props.sudokuList[63]},
-    {id: 64, value: props.sudokuList[64]},
-    {id: 65, value: props.sudokuList[65]},
-    {id: 66, value: props.sudokuList[66]},
-    {id: 67, value: props.sudokuList[67]},
-    {id: 68, value: props.sudokuList[68]},
-    {id: 69, value: props.sudokuList[69]},
-    {id: 70, value: props.sudokuList[70]},
-    {id: 71, value: props.sudokuList[71]},
-    {id: 72, value: props.sudokuList[72]},
-    {id: 73, value: props.sudokuList[73]},
-    {id: 74, value: props.sudokuList[74]},
-    {id: 75, value: props.sudokuList[75]},
-    {id: 76, value: props.sudokuList[76]},
-    {id: 77, value: props.sudokuList[77]},
-    {id: 78, value: props.sudokuList[78]},
-    {id: 79, value: props.sudokuList[79]},
-    {id: 80, value: props.sudokuList[80]}
+    {id: 0*9 + 0, value: props.sudokuList[0][0]},
+    {id: 0*9 + 1, value: props.sudokuList[0][1]},
+    {id: 0*9 + 2, value: props.sudokuList[0][2]},
+    {id: 0*9 + 3, value: props.sudokuList[0][3]},
+    {id: 0*9 + 4, value: props.sudokuList[0][4]},
+    {id: 0*9 + 5, value: props.sudokuList[0][5]},
+    {id: 0*9 + 6, value: props.sudokuList[0][6]},
+    {id: 0*9 + 7, value: props.sudokuList[0][7]},
+    {id: 0*9 + 8, value: props.sudokuList[0][8]},
+    {id: 1*9 + 0, value: props.sudokuList[1][0]},
+    {id: 1*9 + 1, value: props.sudokuList[1][1]},
+    {id: 1*9 + 2, value: props.sudokuList[1][2]},
+    {id: 1*9 + 3, value: props.sudokuList[1][3]},
+    {id: 1*9 + 4, value: props.sudokuList[1][4]},
+    {id: 1*9 + 5, value: props.sudokuList[1][5]},
+    {id: 1*9 + 6, value: props.sudokuList[1][6]},
+    {id: 1*9 + 7, value: props.sudokuList[1][7]},
+    {id: 1*9 + 8, value: props.sudokuList[1][8]},
+    {id: 2*9 + 0, value: props.sudokuList[2][0]},
+    {id: 2*9 + 1, value: props.sudokuList[2][1]},
+    {id: 2*9 + 2, value: props.sudokuList[2][2]},
+    {id: 2*9 + 3, value: props.sudokuList[2][3]},
+    {id: 2*9 + 4, value: props.sudokuList[2][4]},
+    {id: 2*9 + 5, value: props.sudokuList[2][5]},
+    {id: 2*9 + 6, value: props.sudokuList[2][6]},
+    {id: 2*9 + 7, value: props.sudokuList[2][7]},
+    {id: 2*9 + 8, value: props.sudokuList[2][8]},
+    {id: 3*9 + 0, value: props.sudokuList[3][0]},
+    {id: 3*9 + 1, value: props.sudokuList[3][1]},
+    {id: 3*9 + 2, value: props.sudokuList[3][2]},
+    {id: 3*9 + 3, value: props.sudokuList[3][3]},
+    {id: 3*9 + 4, value: props.sudokuList[3][4]},
+    {id: 3*9 + 5, value: props.sudokuList[3][5]},
+    {id: 3*9 + 6, value: props.sudokuList[3][6]},
+    {id: 3*9 + 7, value: props.sudokuList[3][7]},
+    {id: 3*9 + 8, value: props.sudokuList[3][8]},
+    {id: 4*9 + 0, value: props.sudokuList[4][0]},
+    {id: 4*9 + 1, value: props.sudokuList[4][1]},
+    {id: 4*9 + 2, value: props.sudokuList[4][2]},
+    {id: 4*9 + 3, value: props.sudokuList[4][3]},
+    {id: 4*9 + 4, value: props.sudokuList[4][4]},
+    {id: 4*9 + 5, value: props.sudokuList[4][5]},
+    {id: 4*9 + 6, value: props.sudokuList[4][6]},
+    {id: 4*9 + 7, value: props.sudokuList[4][7]},
+    {id: 4*9 + 8, value: props.sudokuList[4][8]},
+    {id: 5*9 + 0, value: props.sudokuList[5][0]},
+    {id: 5*9 + 1, value: props.sudokuList[5][1]},
+    {id: 5*9 + 2, value: props.sudokuList[5][2]},
+    {id: 5*9 + 3, value: props.sudokuList[5][3]},
+    {id: 5*9 + 4, value: props.sudokuList[5][4]},
+    {id: 5*9 + 5, value: props.sudokuList[5][5]},
+    {id: 5*9 + 6, value: props.sudokuList[5][6]},
+    {id: 5*9 + 7, value: props.sudokuList[5][7]},
+    {id: 5*9 + 8, value: props.sudokuList[5][8]},
+    {id: 6*9 + 0, value: props.sudokuList[6][0]},
+    {id: 6*9 + 1, value: props.sudokuList[6][1]},
+    {id: 6*9 + 2, value: props.sudokuList[6][2]},
+    {id: 6*9 + 3, value: props.sudokuList[6][3]},
+    {id: 6*9 + 4, value: props.sudokuList[6][4]},
+    {id: 6*9 + 5, value: props.sudokuList[6][5]},
+    {id: 6*9 + 6, value: props.sudokuList[6][6]},
+    {id: 6*9 + 7, value: props.sudokuList[6][7]},
+    {id: 6*9 + 8, value: props.sudokuList[6][8]},
+    {id: 7*9 + 0, value: props.sudokuList[7][0]},
+    {id: 7*9 + 1, value: props.sudokuList[7][1]},
+    {id: 7*9 + 2, value: props.sudokuList[7][2]},
+    {id: 7*9 + 3, value: props.sudokuList[7][3]},
+    {id: 7*9 + 4, value: props.sudokuList[7][4]},
+    {id: 7*9 + 5, value: props.sudokuList[7][5]},
+    {id: 7*9 + 6, value: props.sudokuList[7][6]},
+    {id: 7*9 + 7, value: props.sudokuList[7][7]},
+    {id: 7*9 + 8, value: props.sudokuList[7][8]},
+    {id: 8*9 + 0, value: props.sudokuList[8][0]},
+    {id: 8*9 + 1, value: props.sudokuList[8][1]},
+    {id: 8*9 + 2, value: props.sudokuList[8][2]},
+    {id: 8*9 + 3, value: props.sudokuList[8][3]},
+    {id: 8*9 + 4, value: props.sudokuList[8][4]},
+    {id: 8*9 + 5, value: props.sudokuList[8][5]},
+    {id: 8*9 + 6, value: props.sudokuList[8][6]},
+    {id: 8*9 + 7, value: props.sudokuList[8][7]},
+    {id: 8*9 + 8, value: props.sudokuList[8][8]},
   ];
 
   function renderItem({item}) {
     return (
       <TouchableOpacity
-        onPress={() => props.setSelectionId(item.id)}
-        style={(item.id === props.selectionId) ? styles.selectedSudokuBlock : styles.sudokuBlock}
+        onPress={() => {
+          console.log("i =", Math.floor(item.id/9), "j =", item.id % 9);
+          props.setSelectionLine(Math.floor(item.id/9));
+          props.setSelectionColumn(item.id % 9);
+          // console.log(props.selectionLine);
+        }}
+        style={(Math.floor(item.id/9) === props.selectionLine && item.id % 9 === props.selectionColumn) ? styles.selectedSudokuBlock : styles.sudokuBlock}
       >
-        <Text style={{fontSize: 24}}>{item.value}</Text>
+        <Text style={{fontSize: 24}}>{(item.value === 0) ? " " : item.value}</Text>
       </TouchableOpacity>
     );
   }

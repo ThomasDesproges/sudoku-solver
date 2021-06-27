@@ -7,6 +7,7 @@ import MainMenu from "./Components/mainMenu";
 import PreviewDisplay from "./Components/previewDisplay";
 import CameraDisplay from "./Components/cameraDisplay";
 import SolverDisplay from "./Components/gridDisplay";
+import solve from "./resolution_sudoku/sudoku_algo";
 
 
 
@@ -21,16 +22,25 @@ export default function App() {
   const [capturedImage, setCapturedImage] = useState(null);
 
   const [gridVisible, setGridVisible] = useState(false);
-  const [sudokuList, setSudokuList] = useState([5," ",7,8," ",1,6," ",9,8," ",4,6," "," "," ",1,2," ",6,1," ",9,4," "," ",8," "," "," ",7," ",6," ",9," "," ",3," ",1," ",8," "," ",7," ",7," ",3,2," "," ",6," ",9," ",6,4," ",3," ",2," "," "," ",8,5," ",7," "," ",1,7," ",3," "," ",2,4," "," "]);
-  const [selectionId, setSelectionId] = useState(-1);
+  const [sudokuList, setSudokuList] = useState([
+    [5, 0, 7, 8, 0, 1, 6, 0, 9],
+    [8, 0, 4, 6, 0, 0, 0, 1, 2],
+    [0, 6, 1, 0, 9, 4, 0, 0, 8],
+    [0, 0, 0, 7, 0, 6, 0, 9, 0],
+    [0, 3, 0, 1, 0, 8, 0, 0, 7],
+    [0, 7, 0, 3, 2, 0, 0, 6, 0],
+    [9, 0, 6, 4, 0, 3, 0, 2, 0],
+    [0, 0, 8, 5, 0, 7, 0, 0, 1],
+    [7, 0, 3, 0, 0, 2, 4, 0, 0],
+  ]);
+  const [selectionLine, setSelectionLine] = useState(-1);
+  const [selectionColumn, setSelectionColumn] = useState(-1);
 
   const [startOver, setStartOver] = useState(true);
 
   const [type, setType] = useState(Camera.Constants.Type.back);
 
   let camera: Camera;
-
-  console.log(camera);
 
   useEffect(() => {
     ;(async () => {
@@ -39,16 +49,12 @@ export default function App() {
     })();
   }, []);
 
-  console.log(camera);
-
   const __closeCamera = () => {
     setStartOver(true);
   };
 
   const __takePicture = async () => {
     if (!camera) return;
-    console.log("oui");
-    console.log(camera);
     const photo = await camera.takePictureAsync();
     console.log(photo);
     setViewCapturedImage(true);
@@ -63,7 +69,36 @@ export default function App() {
     setSudokuList(newSudokuList);
   };
 
-  console.log(camera);
+  const handleSudokuSolving = () => {
+    const solvedBoard = solve(sudokuList);
+    setSudokuList(solvedBoard);
+  };
+
+  const handleClearSudoku = () => {
+    /* const clearBoard = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ]; */
+    const clearBoard = [
+      [5, 0, 7, 8, 0, 1, 6, 0, 9],
+      [8, 0, 4, 6, 0, 0, 0, 1, 2],
+      [0, 6, 1, 0, 9, 4, 0, 0, 8],
+      [0, 0, 0, 7, 0, 6, 0, 9, 0],
+      [0, 3, 0, 1, 0, 8, 0, 0, 7],
+      [0, 7, 0, 3, 2, 0, 0, 6, 0],
+      [9, 0, 6, 4, 0, 3, 0, 2, 0],
+      [0, 0, 8, 5, 0, 7, 0, 0, 1],
+      [7, 0, 3, 0, 0, 2, 4, 0, 0],
+    ];
+    setSudokuList(clearBoard);
+  };
 
   return (
 
@@ -92,12 +127,16 @@ export default function App() {
 
               <SolverDisplay
                 handleSudokuModification={handleSudokuModification}
+                handleSudokuSolving={handleSudokuSolving}
+                handleClearSudoku={handleClearSudoku}
                 sudokuList={sudokuList}
                 setSudokuList={setSudokuList}
                 setStartOver={setStartOver}
                 setGridVisible={setGridVisible}
-                selectionId={selectionId}
-                setSelectionId={setSelectionId}
+                selectionLine={selectionLine}
+                selectionColumn={selectionColumn}
+                setSelectionLine={setSelectionLine}
+                setSelectionColumn={setSelectionColumn}
               />
 
             :

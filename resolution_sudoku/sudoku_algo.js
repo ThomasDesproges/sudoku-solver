@@ -54,7 +54,7 @@ function complete_cell(board, r, c) {
 
 function appears_once_only(board, possibilities, segment, r, c) {
     let updated = false;
-    for (i = 0; i < possibilities.length; i++) {
+    for (let i = 0; i < possibilities.length; i++) {
         const possibility = possibilities[i];
         let counter = 0;
         segment.forEach(cell => {
@@ -85,17 +85,17 @@ function compare(expected, actual) {
 function is_solved(board) {
     const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     let valid = true;
-    for (r = 0; r < 9 && valid === true; r++) {
+    for (let r = 0; r < 9 && valid === true; r++) {
         if (!compare(expected, get_row(board, r))) {
             valid = false;
         }
     }
-    for (c = 0; c < 9 && valid === true; c++) {
+    for (let c = 0; c < 9 && valid === true; c++) {
         if (!compare(expected, get_column(board, c))) {
             valid = false;
         }
     }
-    for (q = 1; q < 9 && valid === true; q++) {
+    for (let q = 1; q < 9 && valid === true; q++) {
         if (!compare(expected, get_square(board, q))) {
             valid = false;
         }
@@ -167,7 +167,7 @@ function one_value_cell_constraint(board) {
 }
 
 // renvoie un array contenant le board complété
-function solve(board) {
+export default function solve(board) {
 
     let updated = true; let solved = false;
 
@@ -190,7 +190,7 @@ function solve(board) {
 
 // Exemple de code pour résolution : //
 
-const Arr = [
+/* const Arr = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 3, 0, 8, 5],
     [0, 0, 1, 0, 2, 0, 0, 0, 0],
@@ -202,4 +202,4 @@ const Arr = [
     [0, 0, 0, 0, 4, 0, 0, 0, 9]
 ];
 
-solution = solve(evilGameArr2);
+solution = solve(evilGameArr2); */
