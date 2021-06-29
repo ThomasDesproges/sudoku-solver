@@ -5,6 +5,7 @@ import MainMenu from "./Components/mainMenu";
 import PreviewDisplay from "./Components/previewDisplay";
 import CameraDisplay from "./Components/cameraDisplay";
 import SolverDisplay from "./Components/gridDisplay";
+import Levels from "./Components/levels";
 import solve from "./resolution_sudoku/sudoku_algo";
 
 const copy = (sudoku1) => {
@@ -14,6 +15,7 @@ const copy = (sudoku1) => {
         }
   return sudoku2;
 };
+
 
 // eslint-disable-next-line no-unused-vars
 const tag = "[CAMERA]";
@@ -57,6 +59,121 @@ export default function App() {
 
   const [type, setType] = useState(Camera.Constants.Type.back);
 
+
+  const levelS = [[[
+    [5, 0, 7, 8, 0, 1, 6, 0, 9],
+    [8, 0, 4, 6, 0, 0, 0, 1, 2],
+    [0, 6, 1, 0, 9, 4, 0, 0, 8],
+    [0, 0, 0, 7, 0, 6, 0, 9, 0],
+    [0, 3, 0, 1, 0, 8, 0, 0, 7],
+    [0, 7, 0, 3, 2, 0, 0, 6, 0],
+    [9, 0, 6, 4, 0, 3, 0, 2, 0],
+    [0, 0, 8, 5, 0, 7, 0, 0, 1],
+    [7, 0, 3, 0, 0, 2, 4, 0, 0],
+  ],[
+    [0, 0, 6, 8, 0, 0, 5, 0, 0],
+    [0, 9, 0, 0, 0, 0, 0, 2, 0],
+    [0, 2, 0, 0, 0, 9, 7, 3, 8],
+    [0, 0, 7, 0, 0, 6, 0, 4, 3],
+    [0, 0, 8, 5, 0, 4, 1, 0, 0],
+    [1, 3, 0, 7, 0, 0, 6, 0, 0],
+    [3, 1, 2, 6, 0, 0, 0, 8, 0],
+    [0, 4, 0, 0, 0, 0, 0, 5, 0],
+    [0, 0, 5, 0, 0, 1, 3, 0, 0],
+  ]],[[
+    [1, 0, 0, 3, 0, 9, 0, 0, 0],
+    [4, 0, 5, 0, 0, 0, 0, 0, 0],
+    [3, 0, 9, 0, 0, 0, 5, 0, 7],
+    [0, 4, 0, 5, 0, 3, 8, 0, 0],
+    [0, 0, 6, 9, 0, 2, 7, 0, 0],
+    [0, 0, 3, 7, 0, 8, 0, 9, 0],
+    [7, 0, 4, 0, 0, 0, 3, 0, 2],
+    [0, 0, 0, 0, 0, 0, 4, 0, 6],
+    [0, 0, 0, 8, 0, 4, 0, 0, 9],
+  ],[
+      [0, 0, 0, 9, 0, 6, 0, 7, 3],
+      [0, 0, 0, 0, 7, 0, 0, 0, 0],
+      [1, 0, 0, 0, 0, 0, 4, 5, 9],
+      [0, 3, 8, 5, 9, 0, 6, 0, 0],
+      [0, 1, 0, 0, 0, 0, 0, 3, 0],
+      [0, 0, 4, 0, 6, 3, 9, 8, 0],
+      [4, 2, 5, 0, 0, 0, 0, 0, 7],
+      [0, 0, 0, 0, 5, 0, 0, 0, 0],
+      [3, 7, 0, 8, 0, 2, 0, 0, 0],
+    ]],[[
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ],[
+      [0, 3, 0, 7, 0, 0, 6, 2, 8],
+      [2, 0, 7, 9, 0, 4, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [1, 0, 2, 0, 0, 3, 0, 0, 0],
+      [0, 6, 0, 0, 8, 0, 0, 1, 0],
+      [0, 0, 0, 6, 0, 0, 2, 0, 3],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 8, 0, 6, 3, 0, 1],
+      [4, 1, 3, 0, 0, 2, 0, 8, 0],
+    ],[
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ],[
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ],[
+      [9, 0, 0, 0, 0, 6, 0, 0, 5],
+      [0, 0, 0, 5, 0, 7, 9, 0, 1],
+      [0, 0, 0, 0, 0, 0, 4, 6, 0],
+      [0, 7, 0, 0, 0, 0, 0, 8, 0],
+      [3, 0, 2, 0, 0, 0, 5, 0, 7],
+      [0, 4, 0, 0, 0, 0, 0, 2, 0],
+      [0, 6, 8, 0, 0, 0, 0, 0, 0],
+      [7, 0, 5, 2, 0, 9, 0, 0, 0],
+      [2, 0, 0, 4, 0, 0, 0, 0, 3],
+    ]],[[
+      [0, 3, 0, 0, 0, 7, 0, 4, 2],
+      [0, 0, 6, 0, 2, 0, 0, 0, 5],
+      [0, 0, 0, 5, 8, 0, 1, 0, 0],
+      [0, 5, 0, 0, 0, 0, 0, 0, 9],
+      [9, 1, 0, 0, 0, 0, 0, 2, 8],
+      [2, 0, 0, 0, 0, 0, 0, 3, 0],
+      [0, 0, 5, 0, 4, 9, 0, 0, 0],
+      [6, 0, 0, 0, 7, 0, 2, 0, 0],
+      [4, 2, 0, 1, 0, 0, 0, 5, 0],
+    ],[
+      [0, 0, 0, 3, 0, 0, 0, 1, 0],
+      [9, 0, 0, 0, 8, 4, 7, 0, 0],
+      [3, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 2, 8, 0, 0, 3, 0, 0],
+      [0, 1, 0, 0, 0, 0, 0, 7, 0],
+      [0, 0, 7, 0, 0, 6, 5, 0, 0],
+      [0, 0, 0, 7, 0, 0, 0, 0, 9],
+      [0, 0, 4, 1, 5, 0, 0, 0, 6],
+      [0, 6, 0, 0, 0, 2, 0, 0, 0],
+    ]]]
+
+  const [chooseLevel, setChooseLevel] = useState(true);
+
   let camera: Camera;
 
   useEffect(() => {
@@ -65,7 +182,6 @@ export default function App() {
       setHasPermission(status === "granted");
     })();
   }, []);
-
 
   const __closeCamera = () => {
     setStartOver(true);
@@ -87,7 +203,8 @@ export default function App() {
   };
 
   const handleSudokuSolving = () => {
-    const solvedBoard = solve(sudokuList);
+    const sudokuListBis = copy(sudokuList);
+    const solvedBoard = solve(sudokuListBis);
     setSudokuList(solvedBoard);
   };
 
@@ -152,25 +269,34 @@ export default function App() {
               </ImageBackground>
 
             : gridVisible ?
+              chooseLevel?
+                <Levels
+                    setChooseLevel={setChooseLevel}
+                    levelS={levelS}
+                    setInitialBoard={setInitialBoard}
+                    setSudokuList={setSudokuList}
+                />
 
-              <SolverDisplay
-                handleSudokuModification={handleSudokuModification}
-                handleSudokuSolving={handleSudokuSolving}
-                handleClearSudoku={handleClearSudoku}
-                handleResetSudoku={handleResetSudoku}
-                handleSaveSudoku={handleSaveSudoku}
-                sudokuList={sudokuList}
-                setSudokuList={setSudokuList}
-                setStartOver={setStartOver}
-                setGridVisible={setGridVisible}
-                selectionLine={selectionLine}
-                selectionColumn={selectionColumn}
-                setSelectionLine={setSelectionLine}
-                setSelectionColumn={setSelectionColumn}
-                indice = {handleHint}
-                initialBoard = {initialBoard}
-                setInitialBoard={setInitialBoard}
-              />
+
+              : <SolverDisplay
+                    setChooseLevel={setChooseLevel}
+                    handleSudokuModification={handleSudokuModification}
+                    handleSudokuSolving={handleSudokuSolving}
+                    handleClearSudoku={handleClearSudoku}
+                    handleResetSudoku={handleResetSudoku}
+                    handleSaveSudoku={handleSaveSudoku}
+                    sudokuList={sudokuList}
+                    setSudokuList={setSudokuList}
+                    setStartOver={setStartOver}
+                    setGridVisible={setGridVisible}
+                    selectionLine={selectionLine}
+                    selectionColumn={selectionColumn}
+                    setSelectionLine={setSelectionLine}
+                    setSelectionColumn={setSelectionColumn}
+                    indice = {handleHint}
+                    initialBoard = {initialBoard}
+                    setInitialBoard={setInitialBoard}
+                  />
 
             :
               <Camera

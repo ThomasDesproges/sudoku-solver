@@ -79,7 +79,7 @@ const SolverDisplay = (props) => {
 
         <View>
           <TouchableOpacity
-            onPress={() => {props.setStartOver(true); props.setGridVisible(false);}}
+            onPress={() => {props.setStartOver(true); props.setGridVisible(false);props.setChooseLevel(true)}}
             style={styles.button}
           >
             <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Menu </Text>
