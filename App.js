@@ -81,7 +81,7 @@ export default function App() {
   const __savePhoto = async () => {};
 
   const handleSudokuModification = (i, j, value) => {
-    const newSudokuList = [...sudokuList];
+    const newSudokuList = copy(sudokuList);
     newSudokuList[i][j] = value;
     setSudokuList(newSudokuList);
   };
@@ -122,8 +122,8 @@ export default function App() {
   const handleSaveSudoku = () => {
     const savedBoard1 = copy(sudokuList);
     setInitialBoard(savedBoard1);
-    const savedBoard2 = copy(sudokuList);
-    setInitialBoard(savedBoard2);
+    // const savedBoard2 = copy(sudokuList);
+    // setSudokuList(savedBoard2);
   };
 
   return (

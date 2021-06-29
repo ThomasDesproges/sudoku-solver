@@ -68,6 +68,7 @@ const SolverDisplay = (props) => {
                   props.selectionColumn,
                   0
                 );
+                console.log(props.sudokuList);
               }
             }
             style={styles.key}
@@ -102,7 +103,7 @@ const SolverDisplay = (props) => {
             }
             style = {styles.button}
             >
-            <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Indice </Text>
+            <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Hint </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -241,7 +242,7 @@ const GridDisplay = (props) => {
           style={
             (props.initialBoard[Math.floor(item.id/9)][item.id % 9] === 0) ?
               {fontSize:24, color:"#666"} :
-              {fontSize:24 , fontWeight:"bold"}
+              {fontSize:24, fontWeight:"bold"}
         }
         >
           {(item.value === 0) ? " " : item.value}
