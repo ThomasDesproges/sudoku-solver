@@ -68,7 +68,7 @@ const SolverDisplay = (props) => {
                   props.selectionColumn,
                   0
                 );
-                console.log(props.sudokuList);
+                console.log(props.initialBoard);
               }
             }
             style={styles.key}
@@ -240,6 +240,7 @@ const GridDisplay = (props) => {
       >
         <Text
           style={
+            // eslint-disable-next-line eqeqeq
             (props.initialBoard[Math.floor(item.id/9)][item.id % 9] === 0) ?
               {fontSize:24, color:"#666"} :
               {fontSize:24, fontWeight:"bold"}
