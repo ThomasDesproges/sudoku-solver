@@ -47,6 +47,7 @@ const SolverDisplay = (props) => {
         setSelectionLine={props.setSelectionLine}
         selectionColumn={props.selectionColumn}
         setSelectionColumn={props.setSelectionColumn}
+        initialBoard = {props.initialBoard}
       />
 
       <View style={{flexDirection: "row"}}>
@@ -208,8 +209,12 @@ const GridDisplay = (props) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          props.setSelectionLine(Math.floor(item.id/9));
-          props.setSelectionColumn(item.id % 9);
+          const i = Math.floor(item.id/9);
+          const j = item.id % 9;
+          if (props.initialBoard[i][j] === 0) {
+            props.setSelectionLine(i);
+            props.setSelectionColumn(j);
+          }
         }}
         style={
           (Math.floor(item.id/9) === props.selectionLine) ? 
@@ -219,7 +224,15 @@ const GridDisplay = (props) => {
             styles.sudokuBlock
         }
       >
-        <Text style={{fontSize: 24}}>{(item.value === 0) ? " " : item.value}</Text>
+        <Text
+          style={
+            (props.initialBoard[Math.floor(item.id/9)][item.id % 9] === 0) ?
+              {fontSize:24}:
+              {fontSize:24 , fontWeight:"bold"}
+        }
+        >
+          {(item.value === 0) ? " " : item.value}
+        </Text>
       </TouchableOpacity>
     );
   }

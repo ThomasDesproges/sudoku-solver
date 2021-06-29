@@ -1,4 +1,4 @@
-import {Text, TouchableOpacity, View} from "react-native";
+import {Text, TouchableOpacity, View, StyleSheet} from "react-native";
 import React from "react";
 
 const PreviewDisplay = (props) => (
@@ -11,38 +11,47 @@ const PreviewDisplay = (props) => (
         }}
     >
 
-        <View
-            style={{
-                flexDirection: "row",
-                justifyContent: "space-between"
-            }}
-        >
+        <View>
 
             <TouchableOpacity
                 onPress={() => props.setViewCapturedImage(false)}
                 style={{
-                    width: 130,
-                    height: 40,
-                    alignItems: "center",
-                    borderRadius: 4
+                    position:"absolute",
+                    bottom: "10%",
+                    left:"5%",
+                    width: 150,
+                    height: 50,
+                    borderRadius: 4,
+                    borderWidth: 4,
+                    borderColor:"#aaa",
+                    backgroundColor: "#fff",
+                    justifyContent: "center",
+                    alignItems: "center"
                 }}
             >
 
-                <Text style={{color: "#fff", fontSize: 20}}> Re-take </Text>
+                <Text style={{color: "#888", fontSize: 18}}> Re-take </Text>
 
             </TouchableOpacity>
 
             <TouchableOpacity
                 onPress={props.__savePhoto}
                 style={{
-                    width: 130,
-                    height: 40,
-                    alignItems: "center",
-                    borderRadius: 4
+                    position:"absolute",
+                    bottom: "10%",
+                    right:"5%",
+                    width: 150,
+                    height: 50,
+                    borderRadius: 4,
+                    borderWidth: 4,
+                    borderColor:"#aaa",
+                    backgroundColor: "#fff",
+                    justifyContent: "center",
+                    alignItems: "center"
                 }}
             >
 
-                <Text style={{color: "#fff", fontSize: 20}}> save photo </Text>
+                <Text style={{color: "#888", fontSize: 18}}> Generate board </Text>
 
             </TouchableOpacity>
 
@@ -50,5 +59,6 @@ const PreviewDisplay = (props) => (
 
     </View>
 );
+
 
 export default PreviewDisplay;
