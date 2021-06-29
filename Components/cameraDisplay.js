@@ -63,7 +63,7 @@ const CameraDisplay = (props) => (
             >
 
                 <Image
-                    source = {require("../images/renew.png")}
+                    source = {require("../assets/renew.png")}
                     style={{
                         width: 50,
                         height: 50,

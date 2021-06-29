@@ -1,10 +1,9 @@
+import cv from "./opencv";
 
 
 
+export default function traitementGrilleVersCases(img,borderCleaning,borderFree,midSpace,BandWonly) {
 
-export default async function traitementGrilleVersCases(img,borderCleaning,borderFree,midSpace,BandWonly) {
-
-    await loadOpenCV();
     //Paramètres à entrer : img,0.1,0.25,0.1,true
 
     let imgSudokuRaw = cv.imread(img);
