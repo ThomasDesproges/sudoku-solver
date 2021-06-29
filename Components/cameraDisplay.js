@@ -101,6 +101,7 @@ const CameraDisplay = (props) => (
                             borderWidth: 4,
                             borderColor: "#aaa"
                         }}
+
                     />
                 </View>
             </View>

@@ -9,7 +9,13 @@ import CameraDisplay from "./Components/cameraDisplay";
 import SolverDisplay from "./Components/gridDisplay";
 import solve from "./resolution_sudoku/sudoku_algo";
 
-
+const copy = (sudoku1) => {
+  const sudoku2 = [];
+  for (let r = 0; r < 9; r++) {
+        sudoku2.push([...sudoku1[r]]);
+        }
+  return sudoku2;
+};
 
 // eslint-disable-next-line no-unused-vars
 const tag = "[CAMERA]";
@@ -49,12 +55,12 @@ export default function App() {
     })();
   }, []);
 
+
   const __closeCamera = () => {
     setStartOver(true);
   };
 
   const __takePicture = async () => {
-    if (!camera) return;
     const photo = await camera.takePictureAsync();
     console.log(photo);
     setViewCapturedImage(true);
@@ -72,6 +78,13 @@ export default function App() {
   const handleSudokuSolving = () => {
     const solvedBoard = solve(sudokuList);
     setSudokuList(solvedBoard);
+  };
+
+  const indice = (i,j) => {
+    const newSudokuList = copy(sudokuList);
+    const solvedBoard = solve(sudokuList);
+    newSudokuList[i][j] = solvedBoard[i][j];
+    setSudokuList(newSudokuList);
   };
 
   const handleClearSudoku = () => {
@@ -137,6 +150,7 @@ export default function App() {
                 selectionColumn={selectionColumn}
                 setSelectionLine={setSelectionLine}
                 setSelectionColumn={setSelectionColumn}
+                indice = {indice}
               />
 
             :

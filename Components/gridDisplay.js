@@ -90,6 +90,20 @@ const SolverDisplay = (props) => {
           </TouchableOpacity>
 
           <TouchableOpacity
+            onPress={
+              () => {
+                props.indice(
+                  props.selectionLine,
+                  props.selectionColumn
+                );
+              }
+            }
+            style = {styles.button}
+            >
+            <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Indice </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
             onPress={props.handleClearSudoku}
             style={styles.button}
           >
