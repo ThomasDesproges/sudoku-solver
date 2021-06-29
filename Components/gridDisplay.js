@@ -25,6 +25,7 @@ const SolverDisplay = (props) => {
               props.selectionColumn,
               item.id
             );
+            console.log(props.sudokuList[0][0]);
           }
         }
         style={styles.key}
@@ -38,7 +39,7 @@ const SolverDisplay = (props) => {
     <View style={styles.container}>
 
       <View styles={styles.container}>
-        <Text style={styles.text}> Current Sudoku </Text>
+        <Text style={styles.text}> Sudoku Solver </Text>
       </View>
 
       <GridDisplay
@@ -109,6 +110,20 @@ const SolverDisplay = (props) => {
             style={styles.button}
           >
             <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Clear </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={props.handleResetSudoku}
+            style={styles.button}
+          >
+            <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Reset </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={props.handleSaveSudoku}
+            style={styles.button}
+          >
+            <Text style={{color: "#fff", fontWeight: "bold", textAlign: "center"}}> Save </Text>
           </TouchableOpacity>
 
         </View>
@@ -217,17 +232,15 @@ const GridDisplay = (props) => {
           }
         }}
         style={
-          (Math.floor(item.id/9) === props.selectionLine) ? 
-            ( item.id % 9 === props.selectionColumn ?
+          ((Math.floor(item.id/9) === props.selectionLine) && (item.id % 9 === props.selectionColumn)) ?
               styles.selectedSudokuBlock : 
-              styles.sudokuBlock ) :
-            styles.sudokuBlock
+              styles.sudokuBlock
         }
       >
         <Text
           style={
             (props.initialBoard[Math.floor(item.id/9)][item.id % 9] === 0) ?
-              {fontSize:24}:
+              {fontSize:24, color:"#666"} :
               {fontSize:24 , fontWeight:"bold"}
         }
         >
@@ -286,8 +299,9 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     backgroundColor: "#14274e",
     justifyContent: "center",
-    margin: 10,
-    height: 40,
+    marginBottom: 5,
+    marginLeft:10,
+    height: 29,
   },
   text: {
     color: "#000",

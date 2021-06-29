@@ -1,9 +1,13 @@
-import cv from "./opencv";
 
-export default function traitementGrilleVersCases(imgSudokuRaw,borderCleaning,borderFree,midSpace,BandWonly){
 
+
+
+export default async function traitementGrilleVersCases(img,borderCleaning,borderFree,midSpace,BandWonly) {
+
+    await loadOpenCV();
     //Paramètres à entrer : img,0.1,0.25,0.1,true
 
+    let imgSudokuRaw = cv.imread(img);
     let imgSudoku = new cv.Mat();
     let outerBox = new cv.Mat();
     let ksize = new cv.Size(7, 7);
@@ -903,6 +907,16 @@ export default function traitementGrilleVersCases(imgSudokuRaw,borderCleaning,bo
 */
 
 
+/* Module = {
+    traitementGrilleVersCases
+};
+cv = require("./opencv.js"); */
 
-
-
+/* function loadOpenCV() {
+  return new Promise(resolve => {
+    global.Module = {
+      onRuntimeInitialized: resolve
+    };
+    global.cv = require('./opencv.js');
+  });
+} */

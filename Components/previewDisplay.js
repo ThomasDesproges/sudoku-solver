@@ -1,5 +1,6 @@
-import {Text, TouchableOpacity, View, StyleSheet} from "react-native";
+import {Text, TouchableOpacity, View} from "react-native";
 import React from "react";
+// import traitementGrilleVersCases from "../reconnaissance_grille/algo_reco_grille/traitement_grille_vers_cases";
 
 const PreviewDisplay = (props) => (
     <View

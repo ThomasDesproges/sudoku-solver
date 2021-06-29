@@ -117,9 +117,8 @@ function backtrack_based(orig_board) {
                     for (let i = 0; i < cell.length; i++) {
                         const board_2 = JSON.parse(JSON.stringify(board));
                         board_2[r][c] = cell[i];
-                        if (completed_board === backtrack_based(board_2)) {
-                            return completed_board;
-                        }
+                        const completed_board = backtrack_based(board_2);
+                        if (completed_board) return completed_board;
                     }
                     return false;
                 }
