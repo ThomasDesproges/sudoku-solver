@@ -82,7 +82,7 @@ function compare(expected, actual) {
 }
 
 // true si board (complété) est valide, false sinon
-function is_solved(board) {
+export function is_solved(board) {
     const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     let valid = true;
     for (let r = 0; r < 9 && valid === true; r++) {
@@ -100,6 +100,16 @@ function is_solved(board) {
             valid = false;
         }
     }
+    return valid;
+}
+
+export function is_completed (board) {
+    let valid = true;
+    for (let r = 0; r < 9 && valid === true; r++) {
+        for (let c = 0; c < 9 && valid === true; c++) {
+            valid = (board[r][c] !== 0);
+        };
+    };
     return valid;
 }
 

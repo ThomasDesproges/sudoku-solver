@@ -1,5 +1,6 @@
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
+import {is_solved, is_completed} from "../resolution_sudoku/sudoku_algo";
 
 const SolverDisplay = (props) => {
 
@@ -235,7 +236,7 @@ const GridDisplay = (props) => {
         style={
           (Math.floor(item.id/9) === props.selectionLine) && (item.id % 9 === props.selectionColumn) ?
             styles.selectedSudokuBlock :
-              (((Math.floor(Math.floor(item.id/9)/3) % 2 + ((item.id % 9) % 3) % 2) % 2 === 1) ?
+              (((Math.floor(Math.floor(item.id/9)/3) + (Math.floor((item.id % 9)/3))) % 2 === 0) ?
                 styles.sudokuBlockBis :
                 styles.sudokuBlock)
         }
@@ -255,7 +256,14 @@ const GridDisplay = (props) => {
   }
 
   return (
-    <View style={styles.sudokuGrid}>
+    <View style={
+      is_completed(props.sudokuList) ?
+        is_solved(props.sudokuList) ?
+          styles.sudokuGridValid :
+          styles.sudokuGridCompleted :
+        styles.sudokuGrid
+    }
+    >
       <FlatList
         data={sudokuData}
         renderItem={renderItem}
@@ -286,7 +294,8 @@ const styles = StyleSheet.create({
     height: 35,
     width: 35,
     borderWidth: 1,
-    borderColor: "#222",
+    borderColor: "#000",
+    backgroundColor:"#ddd",
     margin:1
   },
   selectedSudokuBlock: {
@@ -303,6 +312,22 @@ const styles = StyleSheet.create({
     width: 343,
     borderWidth: 5,
     borderColor: "#14274e",
+    borderRadius: 3,
+    margin: 10
+  },
+  sudokuGridCompleted: {
+    height: 343,
+    width: 343,
+    borderWidth: 5,
+    borderColor: "#d71b1b",
+    borderRadius: 3,
+    margin: 10
+  },
+  sudokuGridValid: {
+    height: 343,
+    width: 343,
+    borderWidth: 5,
+    borderColor: "#28c700",
     borderRadius: 3,
     margin: 10
   },
