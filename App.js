@@ -189,7 +189,8 @@ export default function App() {
 
   const handleHint = (i,j) => {
     const newSudokuList = copy(sudokuList);
-    const solvedBoard = solve(sudokuList);
+    const newSudokuListBis = copy(sudokuList);
+    const solvedBoard = solve(newSudokuListBis);
     newSudokuList[i][j] = solvedBoard[i][j];
     setSudokuList(newSudokuList);
   };
