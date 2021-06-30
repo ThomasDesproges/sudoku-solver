@@ -173,7 +173,25 @@ export default function App() {
     setCapturedImage(photo);
   };
 
-  const __savePhoto = async () => {};
+  const handleGenerateBoard = () => {
+    setViewCapturedImage(false);
+    setGridVisible(true);
+    setChooseLevel(false);
+    const level0 = [
+      [1, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ];
+    const level0Bis = copy(level0);
+    setSudokuList(level0);
+    setInitialBoard(level0Bis);
+  };
 
   const handleSudokuModification = (i, j, value) => {
     const newSudokuList = copy(sudokuList);
@@ -245,7 +263,8 @@ export default function App() {
               >
                 <PreviewDisplay
                   setViewCapturedImage= {setViewCapturedImage}
-                  __savePhoto = {__savePhoto}/>
+                  handleGenerateBoard = {handleGenerateBoard}
+                />
               </ImageBackground>
 
             : gridVisible ?

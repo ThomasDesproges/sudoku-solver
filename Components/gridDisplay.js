@@ -233,9 +233,11 @@ const GridDisplay = (props) => {
           }
         }}
         style={
-          ((Math.floor(item.id/9) === props.selectionLine) && (item.id % 9 === props.selectionColumn)) ?
-              styles.selectedSudokuBlock : 
-              styles.sudokuBlock
+          (Math.floor(item.id/9) === props.selectionLine) && (item.id % 9 === props.selectionColumn) ?
+            styles.selectedSudokuBlock :
+              (((Math.floor(Math.floor(item.id/9)/3) % 2 + ((item.id % 9) % 3) % 2) % 2 === 1) ?
+                styles.sudokuBlockBis :
+                styles.sudokuBlock)
         }
       >
         <Text
@@ -277,6 +279,14 @@ const styles = StyleSheet.create({
     width: 35,
     borderWidth: 1,
     borderColor: "#000",
+    margin:1
+  },
+  sudokuBlockBis: {
+    alignItems: "center",
+    height: 35,
+    width: 35,
+    borderWidth: 1,
+    borderColor: "#222",
     margin:1
   },
   selectedSudokuBlock: {

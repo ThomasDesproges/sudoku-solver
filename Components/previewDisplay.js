@@ -36,7 +36,7 @@ const PreviewDisplay = (props) => (
             </TouchableOpacity>
 
             <TouchableOpacity
-                onPress={props.__savePhoto}
+                onPress={props.handleGenerateBoard}
                 style={{
                     position:"absolute",
                     bottom: "10%",
